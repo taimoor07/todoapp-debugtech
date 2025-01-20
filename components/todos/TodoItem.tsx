@@ -29,7 +29,7 @@ const TodoItem = ({ item }: ITodoItemProps) => {
       <TouchableOpacity
         style={styles.checkbox}
         onPress={() => dispatch(toggleTodo(item.id))}>
-        {false ? (
+        {item.isCompleted ? (
           <Text style={styles.checkmark}>✓</Text>
         ) : (
           <Text style={styles.uncheckedBox}> </Text>
@@ -44,7 +44,7 @@ const TodoItem = ({ item }: ITodoItemProps) => {
           {item.text}
         </Text>
         {item.description && (
-          <Text style={styles.todoDescription}>"xxxxxxxxx"</Text>
+          <Text style={styles.todoDescription}>{item.description}</Text>
         )}
         <View style={styles.badgeContainer}>
           <Badge value={item.category} badgeStyle={styles.categoryBadge} />
