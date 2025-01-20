@@ -25,6 +25,17 @@ const todoSlice = createSlice({
       };
       state.todos.push(newTodo);
     },
+    editTodo: (state, { payload }: PayloadAction<Omit<ITodo, 'id'>>) => {
+      const newTodo: ITodo = {
+        id: Date.now().toString(),
+        text: payload.text,
+        description: payload.description,
+        category: payload.category,
+        dueDate: payload.dueDate,
+        isCompleted: false,
+      };
+      state.todos.push(newTodo);
+    },
     removeTodo: (state, { payload }: PayloadAction<string>) => {
       const remainingTodos = state.todos.filter((todo) => todo.id !== payload);
       state.todos = remainingTodos;

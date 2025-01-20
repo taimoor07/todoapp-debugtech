@@ -21,6 +21,7 @@ import { ITodoItemProps } from '../../interfaces';
  */
 
 const TodoItem = ({ item }: ITodoItemProps) => {
+  console.log("🚀 ~ TodoItem ~ item:", item)
   const dispatch = useDispatch();
 
   return (
@@ -28,7 +29,7 @@ const TodoItem = ({ item }: ITodoItemProps) => {
       <TouchableOpacity
         style={styles.checkbox}
         onPress={() => dispatch(toggleTodo(item.id))}>
-        {item.isCompleted ? (
+        {false ? (
           <Text style={styles.checkmark}>✓</Text>
         ) : (
           <Text style={styles.uncheckedBox}> </Text>
@@ -43,7 +44,7 @@ const TodoItem = ({ item }: ITodoItemProps) => {
           {item.text}
         </Text>
         {item.description && (
-          <Text style={styles.todoDescription}>{item.description}</Text>
+          <Text style={styles.todoDescription}>"xxxxxxxxx"</Text>
         )}
         <View style={styles.badgeContainer}>
           <Badge value={item.category} badgeStyle={styles.categoryBadge} />
@@ -56,6 +57,11 @@ const TodoItem = ({ item }: ITodoItemProps) => {
           )}
         </View>
       </View>
+      <TouchableOpacity
+        onPress={() => dispatch(removeTodo(item.id))}
+        style={styles.deleteButton}>
+        <Icon name='cross' size={24} color='#FF5722' />
+      </TouchableOpacity>
       <TouchableOpacity
         onPress={() => dispatch(removeTodo(item.id))}
         style={styles.deleteButton}>
